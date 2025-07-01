@@ -227,7 +227,7 @@ python3 main.py --small-account \
 # 📊 Multi-symbol trading
 python3 main.py --symbol BTCUSDT \
   --strategy PurePriceActionStrategy \
-  --timeframe 5m
+  --timeframe 15m
 ```
 
 ### 📊 **Backtesting Arsenal**

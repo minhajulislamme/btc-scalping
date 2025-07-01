@@ -58,25 +58,25 @@ COMPOUND_SCALING_FACTOR = float(os.getenv('COMPOUND_SCALING_FACTOR', '0.5'))  # 
 
 # Pure Price Action Strategy Parameters - No Traditional Indicators
 
-# Price action analysis parameters
-PRICE_ACTION_LOOKBACK = int(os.getenv('PRICE_ACTION_LOOKBACK', '12'))    # Optimal for 5m BTC
-BREAKOUT_THRESHOLD = float(os.getenv('BREAKOUT_THRESHOLD', '0.008'))     # 0.8% for 5m BTC moderate vol
-VOLATILITY_WINDOW = int(os.getenv('VOLATILITY_WINDOW', '8'))            # Shorter for 5m
-MOMENTUM_WINDOW = int(os.getenv('MOMENTUM_WINDOW', '6'))                 # Shorter for 5m
-SUPPORT_RESISTANCE_STRENGTH = int(os.getenv('SUPPORT_RESISTANCE_STRENGTH', '2'))  # Reduced for 5m
+# Price action analysis parameters - Optimized for 15m timeframe
+PRICE_ACTION_LOOKBACK = int(os.getenv('PRICE_ACTION_LOOKBACK', '20'))    # Increased for 15m BTC analysis
+BREAKOUT_THRESHOLD = float(os.getenv('BREAKOUT_THRESHOLD', '0.012'))     # 1.2% for 15m BTC higher volatility
+VOLATILITY_WINDOW = int(os.getenv('VOLATILITY_WINDOW', '14'))           # Increased for 15m stability
+MOMENTUM_WINDOW = int(os.getenv('MOMENTUM_WINDOW', '10'))                # Increased for 15m momentum
+SUPPORT_RESISTANCE_STRENGTH = int(os.getenv('SUPPORT_RESISTANCE_STRENGTH', '3'))  # Increased for 15m reliability
 
-TIMEFRAME = os.getenv('TIMEFRAME', '5m')  # 5m for BTC scalping
+TIMEFRAME = os.getenv('TIMEFRAME', '15m')  # 15m for BTC swing trading
 
-# Risk management - Enhanced for BTC 5m trading (moderate volatility optimized)
+# Risk management - Enhanced for BTC 15m trading (higher volatility optimized)
 USE_STOP_LOSS = os.getenv('USE_STOP_LOSS', 'True').lower() == 'true'
-STOP_LOSS_PCT = float(os.getenv('STOP_LOSS_PCT', '0.008'))  # 0.8% stop loss for BTC moderate vol
+STOP_LOSS_PCT = float(os.getenv('STOP_LOSS_PCT', '0.015'))  # 1.5% stop loss for BTC 15m higher vol
 TRAILING_STOP = os.getenv('TRAILING_STOP', 'True').lower() == 'true'
-TRAILING_STOP_PCT = float(os.getenv('TRAILING_STOP_PCT', '0.006'))  # 0.6% trailing stop for moderate vol
+TRAILING_STOP_PCT = float(os.getenv('TRAILING_STOP_PCT', '0.012'))  # 1.2% trailing stop for 15m vol
 UPDATE_TRAILING_ON_HOLD = os.getenv('UPDATE_TRAILING_ON_HOLD', 'True').lower() == 'true'
 
-# Take profit settings - Optimized for BTC 5m moderate volatility trading
+# Take profit settings - Optimized for BTC 15m higher volatility trading
 USE_TAKE_PROFIT = os.getenv('USE_TAKE_PROFIT', 'True').lower() == 'true'
-TAKE_PROFIT_PCT = float(os.getenv('TAKE_PROFIT_PCT', '0.012'))  # 1.2% take profit for BTC moderate vol
+TAKE_PROFIT_PCT = float(os.getenv('TAKE_PROFIT_PCT', '0.025'))  # 2.5% take profit for BTC 15m vol
 
 # Enhanced backtesting parameters
 BACKTEST_START_DATE = os.getenv('BACKTEST_START_DATE', '2023-01-01')
@@ -105,25 +105,25 @@ DAILY_REPORT_TIME = os.getenv('DAILY_REPORT_TIME', '00:00')  # 24-hour format
 RETRY_COUNT = int(os.getenv('RETRY_COUNT', '3'))
 RETRY_DELAY = int(os.getenv('RETRY_DELAY', '5'))  # seconds
 
-# Enhanced Price Action Pattern Configuration for BTC 5m (moderate volatility)
-ZONE_WIDTH_PCT = float(os.getenv('ZONE_WIDTH_PCT', '0.006'))  # 0.6% zone width for BTC moderate volatility
-MIN_ZONE_STRENGTH = int(os.getenv('MIN_ZONE_STRENGTH', '2'))  # Reduced for 5m opportunities
-MIN_SIGNAL_STRENGTH = int(os.getenv('MIN_SIGNAL_STRENGTH', '3'))  # Reduced for 5m entries
+# Enhanced Price Action Pattern Configuration for BTC 15m (higher volatility)
+ZONE_WIDTH_PCT = float(os.getenv('ZONE_WIDTH_PCT', '0.010'))  # 1.0% zone width for BTC 15m higher volatility
+MIN_ZONE_STRENGTH = int(os.getenv('MIN_ZONE_STRENGTH', '3'))  # Increased for 15m reliability
+MIN_SIGNAL_STRENGTH = int(os.getenv('MIN_SIGNAL_STRENGTH', '4'))  # Increased for 15m quality signals
 
-# Pattern Detection Parameters
+# Pattern Detection Parameters - Adjusted for 15m timeframe
 ENABLE_MULTI_CANDLE_PATTERNS = os.getenv('ENABLE_MULTI_CANDLE_PATTERNS', 'True').lower() == 'true'
 ENABLE_FLAG_PENNANT_DETECTION = os.getenv('ENABLE_FLAG_PENNANT_DETECTION', 'True').lower() == 'true'
-MIN_FLAG_CONSOLIDATION_CANDLES = int(os.getenv('MIN_FLAG_CONSOLIDATION_CANDLES', '5'))
-MIN_PENNANT_CONSOLIDATION_CANDLES = int(os.getenv('MIN_PENNANT_CONSOLIDATION_CANDLES', '6'))
+MIN_FLAG_CONSOLIDATION_CANDLES = int(os.getenv('MIN_FLAG_CONSOLIDATION_CANDLES', '8'))  # Increased for 15m
+MIN_PENNANT_CONSOLIDATION_CANDLES = int(os.getenv('MIN_PENNANT_CONSOLIDATION_CANDLES', '10'))  # Increased for 15m
 
-# Pattern Quality Filters - Tighter for BTC 5m
-MIN_PIN_BAR_SHADOW_RATIO = float(os.getenv('MIN_PIN_BAR_SHADOW_RATIO', '2.2'))  # Tighter for BTC
-MIN_MARUBOZU_BODY_RATIO = float(os.getenv('MIN_MARUBOZU_BODY_RATIO', '0.87'))  # Tighter for BTC
-MIN_DOJI_BODY_RATIO = float(os.getenv('MIN_DOJI_BODY_RATIO', '0.12'))  # Tighter for BTC
-MIN_ENGULFING_SIZE_RATIO = float(os.getenv('MIN_ENGULFING_SIZE_RATIO', '1.08'))  # Tighter for BTC
+# Pattern Quality Filters - Adjusted for BTC 15m
+MIN_PIN_BAR_SHADOW_RATIO = float(os.getenv('MIN_PIN_BAR_SHADOW_RATIO', '2.0'))  # Slightly relaxed for 15m
+MIN_MARUBOZU_BODY_RATIO = float(os.getenv('MIN_MARUBOZU_BODY_RATIO', '0.85'))  # Slightly relaxed for 15m
+MIN_DOJI_BODY_RATIO = float(os.getenv('MIN_DOJI_BODY_RATIO', '0.15'))  # Slightly relaxed for 15m
+MIN_ENGULFING_SIZE_RATIO = float(os.getenv('MIN_ENGULFING_SIZE_RATIO', '1.10'))  # Slightly increased for 15m
 
-# Volume Confirmation (when available) - Adjusted for BTC 5m
-VOLUME_CONFIRMATION_MULTIPLIER = float(os.getenv('VOLUME_CONFIRMATION_MULTIPLIER', '1.4'))  # Tighter for BTC
+# Volume Confirmation (when available) - Adjusted for BTC 15m
+VOLUME_CONFIRMATION_MULTIPLIER = float(os.getenv('VOLUME_CONFIRMATION_MULTIPLIER', '1.3'))  # Slightly relaxed for 15m
 ENABLE_VOLUME_CONFIRMATION = os.getenv('ENABLE_VOLUME_CONFIRMATION', 'True').lower() == 'true'
 
 # Risk Management for Enhanced Patterns
@@ -134,15 +134,15 @@ LOW_CONFIDENCE_POSITION_MULTIPLIER = float(os.getenv('LOW_CONFIDENCE_POSITION_MU
 # Pattern-Specific Risk Management
 PATTERN_SPECIFIC_RISK = os.getenv('PATTERN_SPECIFIC_RISK', 'True').lower() == 'true'
 
-# Different stop losses for different pattern types - BTC 5m moderate volatility optimized
-REVERSAL_PATTERN_STOP_PCT = float(os.getenv('REVERSAL_PATTERN_STOP_PCT', '0.010'))   # 1.0% for BTC reversals
-BREAKOUT_PATTERN_STOP_PCT = float(os.getenv('BREAKOUT_PATTERN_STOP_PCT', '0.008'))  # 0.8% for BTC breakouts
-CONTINUATION_PATTERN_STOP_PCT = float(os.getenv('CONTINUATION_PATTERN_STOP_PCT', '0.006'))  # 0.6% for continuation
+# Different stop losses for different pattern types - BTC 15m higher volatility optimized
+REVERSAL_PATTERN_STOP_PCT = float(os.getenv('REVERSAL_PATTERN_STOP_PCT', '0.018'))   # 1.8% for BTC 15m reversals
+BREAKOUT_PATTERN_STOP_PCT = float(os.getenv('BREAKOUT_PATTERN_STOP_PCT', '0.015'))  # 1.5% for BTC 15m breakouts
+CONTINUATION_PATTERN_STOP_PCT = float(os.getenv('CONTINUATION_PATTERN_STOP_PCT', '0.012'))  # 1.2% for continuation
 
-# Different take profits for pattern types - BTC 5m moderate volatility optimized
-REVERSAL_PATTERN_TP_PCT = float(os.getenv('REVERSAL_PATTERN_TP_PCT', '0.018'))      # 1.8% for BTC reversals
-BREAKOUT_PATTERN_TP_PCT = float(os.getenv('BREAKOUT_PATTERN_TP_PCT', '0.020'))       # 2.0% for BTC breakouts
-CONTINUATION_PATTERN_TP_PCT = float(os.getenv('CONTINUATION_PATTERN_TP_PCT', '0.012'))  # 1.2% for continuation
+# Different take profits for pattern types - BTC 15m higher volatility optimized
+REVERSAL_PATTERN_TP_PCT = float(os.getenv('REVERSAL_PATTERN_TP_PCT', '0.030'))      # 3.0% for BTC 15m reversals
+BREAKOUT_PATTERN_TP_PCT = float(os.getenv('BREAKOUT_PATTERN_TP_PCT', '0.035'))       # 3.5% for BTC 15m breakouts
+CONTINUATION_PATTERN_TP_PCT = float(os.getenv('CONTINUATION_PATTERN_TP_PCT', '0.025'))  # 2.5% for continuation
 
 # Signal confidence adjustments
 HIGH_CONFIDENCE_PATTERNS = ['morning_star', 'evening_star', 'three_white_soldiers', 'three_black_crows', 

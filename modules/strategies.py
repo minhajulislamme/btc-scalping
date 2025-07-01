@@ -309,11 +309,11 @@ class PurePriceActionStrategy(TradingStrategy):
     """
     
     def __init__(self, 
-                 lookback_period=12,        # Optimal lookback for 5m BTC responsiveness
-                 breakout_threshold=0.008,  # 0.8% breakout threshold for BTC moderate volatility
-                 volatility_window=8,       # Shorter volatility window for 5m
-                 momentum_window=6,         # Shorter momentum window for 5m BTC
-                 sr_strength=2):            # Reduced S/R strength for more 5m opportunities
+                 lookback_period=20,        # Increased lookback for 15m BTC analysis
+                 breakout_threshold=0.012,  # 1.2% breakout threshold for BTC 15m higher volatility
+                 volatility_window=14,      # Increased volatility window for 15m stability
+                 momentum_window=10,        # Increased momentum window for 15m BTC
+                 sr_strength=3):            # Increased S/R strength for 15m reliability            # Increased S/R strength for 15m reliability
         
         super().__init__("PurePriceActionStrategy")
         
@@ -337,14 +337,14 @@ class PurePriceActionStrategy(TradingStrategy):
         self.sr_strength = sr_strength
         self._warning_count = 0
         
-        logger.info(f"{self.name} initialized with BTC 5m optimized parameters:")
+        logger.info(f"{self.name} initialized with BTC 15m optimized parameters:")
         logger.info(f"  Lookback Period: {lookback_period} candles")
         logger.info(f"  Breakout Threshold: {breakout_threshold*100}%")
         logger.info(f"  Volatility Window: {volatility_window} periods")
         logger.info(f"  Momentum Window: {momentum_window} periods")
         logger.info(f"  Support/Resistance Strength: {sr_strength}")
-        logger.info(f"  Zone Width: 0.6% (optimized for BTC moderate volatility)")
-        logger.info(f"  Min Signal Strength: 3/10 (optimized for 5m opportunities)")
+        logger.info(f"  Zone Width: 1.0% (optimized for BTC 15m higher volatility)")
+        logger.info(f"  Min Signal Strength: 4/10 (optimized for 15m quality signals)")
     
     def add_indicators(self, df):
         """Add pure price action calculations"""
@@ -640,9 +640,9 @@ class PurePriceActionStrategy(TradingStrategy):
                 
                 # CONDITION 3: MOMENTUM + ZONE CONFIRMATION
                 momentum = current.get('price_momentum', 0)
-                if not pd.isna(momentum) and momentum > 0.007:  # Strong positive momentum (0.7%+) for BTC 5m moderate vol
+                if not pd.isna(momentum) and momentum > 0.012:  # Strong positive momentum (1.2%+) for BTC 15m higher vol
                     # Momentum confirmation near support
-                    if current.get('dist_from_support', 1.0) < 0.025:  # Within 2.5% of support for SOL
+                    if current.get('dist_from_support', 1.0) < 0.035:  # Within 3.5% of support for 15m
                         buy_score += 2
                         signal_reasons.append(f"Strong Momentum near Support ({momentum*100:.2f}%)")
                     
@@ -719,9 +719,9 @@ class PurePriceActionStrategy(TradingStrategy):
                         signal_reasons.append(pattern_name)
                 
                 # CONDITION 3: MOMENTUM + ZONE CONFIRMATION
-                if not pd.isna(momentum) and momentum < -0.007:  # Strong negative momentum (-0.7%+) for BTC 5m moderate vol
+                if not pd.isna(momentum) and momentum < -0.012:  # Strong negative momentum (-1.2%+) for BTC 15m higher vol
                     # Momentum confirmation near resistance
-                    if current.get('dist_from_resistance', 1.0) < 0.015:  # Within 1.5% of resistance for BTC
+                    if current.get('dist_from_resistance', 1.0) < 0.025:  # Within 2.5% of resistance for 15m
                         sell_score += 2
                         signal_reasons.append(f"Strong Negative Momentum near Resistance ({momentum*100:.2f}%)")
                     

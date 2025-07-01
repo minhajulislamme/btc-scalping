@@ -564,9 +564,9 @@ def setup():
     websocket_manager.start()
     logger.info("WebSocket connections started")
     
-    # 🚀 Initialize WebSocket-only rolling buffer for signal generation
+    # 🚀 Initialize WebSocket-only rolling buffer for signal generation (optimized for 15m)
     logger.info("🔄 Initializing WebSocket-only rolling buffer...")
-    rolling_buffer = RollingCandleBuffer(TRADING_SYMBOL, TIMEFRAME, buffer_size=60)
+    rolling_buffer = RollingCandleBuffer(TRADING_SYMBOL, TIMEFRAME, buffer_size=100)  # Increased for 15m analysis depth
     
     # Seed buffer with ONE-TIME REST API call
     if not rolling_buffer.initialize_from_api(binance_client):
