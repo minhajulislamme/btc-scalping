@@ -69,14 +69,14 @@ TIMEFRAME = os.getenv('TIMEFRAME', '15m')  # 15m for BTC swing trading
 
 # Risk management - Enhanced for BTC 15m trading (higher volatility optimized)
 USE_STOP_LOSS = os.getenv('USE_STOP_LOSS', 'True').lower() == 'true'
-STOP_LOSS_PCT = float(os.getenv('STOP_LOSS_PCT', '0.015'))  # 1.5% stop loss for BTC 15m higher vol
+STOP_LOSS_PCT = float(os.getenv('STOP_LOSS_PCT', '0.005'))  # 0.5% stop loss for BTC 15m higher vol
 TRAILING_STOP = os.getenv('TRAILING_STOP', 'True').lower() == 'true'
-TRAILING_STOP_PCT = float(os.getenv('TRAILING_STOP_PCT', '0.012'))  # 1.2% trailing stop for 15m vol
+TRAILING_STOP_PCT = float(os.getenv('TRAILING_STOP_PCT', '0.01'))  # 1% trailing stop for 15m vol
 UPDATE_TRAILING_ON_HOLD = os.getenv('UPDATE_TRAILING_ON_HOLD', 'True').lower() == 'true'
 
 # Take profit settings - Optimized for BTC 15m higher volatility trading
 USE_TAKE_PROFIT = os.getenv('USE_TAKE_PROFIT', 'True').lower() == 'true'
-TAKE_PROFIT_PCT = float(os.getenv('TAKE_PROFIT_PCT', '0.025'))  # 2.5% take profit for BTC 15m vol
+TAKE_PROFIT_PCT = float(os.getenv('TAKE_PROFIT_PCT', '0.02'))  # 2% take profit for BTC 15m vol
 
 # Enhanced backtesting parameters
 BACKTEST_START_DATE = os.getenv('BACKTEST_START_DATE', '2023-01-01')
